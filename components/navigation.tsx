@@ -24,6 +24,9 @@ export default function Navigation() {
             <Link href="/plots" className="text-foreground hover:text-primary transition-colors">
               Browse Plots
             </Link>
+            <Link href="/about" className="text-foreground hover:text-primary transition-colors">
+              About
+            </Link>
             <Link href="#featured" className="text-foreground hover:text-primary transition-colors">
               Featured
             </Link>
@@ -46,6 +49,9 @@ export default function Navigation() {
           <div className="md:hidden pb-4 flex flex-col gap-4">
             <Link href="/plots" className="text-foreground hover:text-primary transition-colors">
               Browse Plots
+            </Link>
+            <Link href="/about" className="text-foreground hover:text-primary transition-colors">
+              About
             </Link>
             <Link href="#featured" className="text-foreground hover:text-primary transition-colors">
               Featured
