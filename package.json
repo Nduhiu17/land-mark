@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "analyze": "ANALYZE=true next build",
+    "lighthouse": "lighthouse http://localhost:3000 --chrome-flags='--headless' --output-path=./lighthouse-report.json"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",

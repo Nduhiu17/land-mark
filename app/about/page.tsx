@@ -28,6 +28,9 @@ export default function AboutPage() {
                   fill
                   className="object-cover"
                   priority
+                  loading="eager"
+                  quality={85}
+                  sizes="(max-width: 768px) 100vw, 50vw"
                 />
               </div>
             </div>
