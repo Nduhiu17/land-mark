@@ -2,6 +2,7 @@ import Navigation from "@/components/navigation"
 import Footer from "@/components/footer"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
+import Image from "next/image"
 
 export default function AboutPage() {
   return (
@@ -10,13 +11,26 @@ export default function AboutPage() {
       <main className="min-h-screen bg-background">
         {/* Hero Section */}
         <section className="bg-gradient-to-br from-primary/10 to-primary/5 py-20 px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-4xl md:text-5xl font-bold mb-6 text-foreground">
-              About Landmark Estates
-            </h1>
-            <p className="text-xl text-muted-foreground mb-8">
-              Your trusted partner in premium real estate investments since 2015
-            </p>
+          <div className="max-w-5xl mx-auto">
+            <div className="grid md:grid-cols-2 gap-12 items-center">
+              <div>
+                <h1 className="text-4xl md:text-5xl font-bold mb-6 text-foreground">
+                  About Landmark Estates
+                </h1>
+                <p className="text-xl text-muted-foreground mb-8">
+                  Your trusted partner in premium real estate investments since 2015
+                </p>
+              </div>
+              <div className="relative h-80 md:h-96 rounded-lg overflow-hidden shadow-lg">
+                <Image
+                  src="/about-us.jpg"
+                  alt="Landmark Estates - About Us"
+                  fill
+                  className="object-cover"
+                  priority
+                />
+              </div>
+            </div>
           </div>
         </section>
 
