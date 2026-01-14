@@ -5,7 +5,7 @@ import type React from "react"
 import { useState } from "react"
 import { Card } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { Phone, Mail, MessageSquare } from "lucide-react"
+import { Phone, Mail, MessageSquare, Send } from "lucide-react"
 
 interface Plot {
   title: string
@@ -37,8 +37,25 @@ export default function InquiryForm({ plot }: { plot: Plot }) {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    // Simulate submission
-    console.log("Form submitted:", formData)
+    
+    // Format message for WhatsApp
+    const whatsappMessage = encodeURIComponent(
+      `Hello! I'm interested in the following property:\n\n` +
+      `*Property:* ${plot.title}\n` +
+      `*Price:* ${formatPrice(plot.price)}\n` +
+      `*Area:* ${plot.area.toLocaleString()} sqft\n\n` +
+      `*Inquiry Details:*\n` +
+      `Name: ${formData.name}\n` +
+      `Email: ${formData.email}\n` +
+      `Phone: ${formData.phone}\n` +
+      `${formData.message ? `\nMessage: ${formData.message}` : ""}`
+    )
+    
+    // Open WhatsApp with the formatted message
+    const whatsappURL = `https://wa.me/254721438253?text=${whatsappMessage}`
+    window.open(whatsappURL, "_blank")
+    
+    // Show success message
     setSubmitted(true)
     setTimeout(() => {
       setSubmitted(false)
@@ -47,18 +64,18 @@ export default function InquiryForm({ plot }: { plot: Plot }) {
   }
 
   return (
-    <Card className="p-6 sticky top-24">
-      <h3 className="text-2xl font-bold text-foreground mb-6">Interested in This Plot?</h3>
+    <Card className="p-6 sticky top-24 animate-fade-in-right">
+      <h3 className="text-2xl font-bold text-foreground mb-6 animate-fade-in-up">Interested in This Plot?</h3>
 
       {submitted ? (
-        <div className="text-center py-8 bg-accent/10 rounded-lg border border-accent/20">
+        <div className="text-center py-8 bg-accent/10 rounded-lg border border-accent/20 animate-bounce-in">
           <div className="text-4xl mb-3">✓</div>
           <p className="font-bold text-foreground mb-2">Thank You!</p>
           <p className="text-sm text-muted-foreground">We'll contact you shortly with more details.</p>
         </div>
       ) : (
         <form onSubmit={handleSubmit} className="space-y-4">
-          <div>
+          <div className="animate-stagger-1">
             <label className="block text-sm font-semibold text-foreground mb-2">Full Name</label>
             <input
               type="text"
@@ -66,12 +83,12 @@ export default function InquiryForm({ plot }: { plot: Plot }) {
               value={formData.name}
               onChange={handleChange}
               required
-              className="w-full px-4 py-3 rounded-lg border border-border bg-background text-foreground placeholder-muted-foreground focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all"
+              className="w-full px-4 py-3 rounded-lg border border-border bg-background text-foreground placeholder-muted-foreground focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all hover-scale-sm"
               placeholder="Your name"
             />
           </div>
 
-          <div>
+          <div className="animate-stagger-2">
             <label className="block text-sm font-semibold text-foreground mb-2">Email</label>
             <input
               type="email"
@@ -79,12 +96,12 @@ export default function InquiryForm({ plot }: { plot: Plot }) {
               value={formData.email}
               onChange={handleChange}
               required
-              className="w-full px-4 py-3 rounded-lg border border-border bg-background text-foreground placeholder-muted-foreground focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all"
+              className="w-full px-4 py-3 rounded-lg border border-border bg-background text-foreground placeholder-muted-foreground focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all hover-scale-sm"
               placeholder="your@email.com"
             />
           </div>
 
-          <div>
+          <div className="animate-stagger-3">
             <label className="block text-sm font-semibold text-foreground mb-2">Phone</label>
             <input
               type="tel"
@@ -92,39 +109,40 @@ export default function InquiryForm({ plot }: { plot: Plot }) {
               value={formData.phone}
               onChange={handleChange}
               required
-              className="w-full px-4 py-3 rounded-lg border border-border bg-background text-foreground placeholder-muted-foreground focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all"
+              className="w-full px-4 py-3 rounded-lg border border-border bg-background text-foreground placeholder-muted-foreground focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all hover-scale-sm"
               placeholder="+91 XXXXX XXXXX"
             />
           </div>
 
-          <div>
+          <div className="animate-stagger-4">
             <label className="block text-sm font-semibold text-foreground mb-2">Message (Optional)</label>
             <textarea
               name="message"
               value={formData.message}
               onChange={handleChange}
               rows={4}
-              className="w-full px-4 py-3 rounded-lg border border-border bg-background text-foreground placeholder-muted-foreground focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all resize-none"
+              className="w-full px-4 py-3 rounded-lg border border-border bg-background text-foreground placeholder-muted-foreground focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all resize-none hover-scale-sm"
               placeholder="Tell us more about your interest..."
             />
           </div>
 
           <Button
             type="submit"
-            className="w-full bg-primary text-primary-foreground py-3 font-semibold hover:bg-primary/90"
+            className="w-full bg-primary text-primary-foreground py-3 font-semibold hover:bg-primary/90 flex items-center justify-center gap-2 hover-float animate-stagger-5"
           >
-            Send Inquiry
+            <Send size={18} />
+            Send via WhatsApp
           </Button>
         </form>
       )}
 
       {/* Contact Info */}
       <div className="mt-8 space-y-4 pt-8 border-t border-border">
-        <h4 className="font-bold text-foreground">Need Help?</h4>
+        <h4 className="font-bold text-foreground animate-fade-in-up">Need Help?</h4>
 
         <a
           href="tel:+911234567890"
-          className="flex items-center gap-3 p-3 bg-secondary hover:bg-secondary/80 rounded-lg transition-colors text-foreground font-medium"
+          className="flex items-center gap-3 p-3 bg-secondary hover:bg-secondary/80 rounded-lg transition-colors text-foreground font-medium hover-float hover-scale animate-stagger-1"
         >
           <Phone size={20} className="text-primary" />
           <div>
@@ -135,7 +153,7 @@ export default function InquiryForm({ plot }: { plot: Plot }) {
 
         <a
           href="mailto:info@landmarkestates.com"
-          className="flex items-center gap-3 p-3 bg-secondary hover:bg-secondary/80 rounded-lg transition-colors text-foreground font-medium"
+          className="flex items-center gap-3 p-3 bg-secondary hover:bg-secondary/80 rounded-lg transition-colors text-foreground font-medium hover-float hover-scale animate-stagger-2"
         >
           <Mail size={20} className="text-accent" />
           <div>
@@ -144,7 +162,7 @@ export default function InquiryForm({ plot }: { plot: Plot }) {
           </div>
         </a>
 
-        <button className="flex items-center gap-3 p-3 bg-secondary hover:bg-secondary/80 rounded-lg transition-colors text-foreground font-medium w-full">
+        <button className="flex items-center gap-3 p-3 bg-secondary hover:bg-secondary/80 rounded-lg transition-colors text-foreground font-medium w-full hover-float hover-scale animate-stagger-3">
           <MessageSquare size={20} className="text-primary" />
           <div className="text-left">
             <p className="text-xs text-muted-foreground">Chat with us</p>

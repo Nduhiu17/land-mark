@@ -21,19 +21,19 @@ export default function Navigation() {
 
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center gap-8">
-            <Link href="/plots" className="text-foreground hover:text-primary transition-colors">
+            <Link href="/plots" className="text-foreground hover:text-primary transition-colors hover-scale-sm">
               Browse Plots
             </Link>
-            <Link href="/about" className="text-foreground hover:text-primary transition-colors">
+            <Link href="/about" className="text-foreground hover:text-primary transition-colors hover-scale-sm">
               About
             </Link>
-            <Link href="#featured" className="text-foreground hover:text-primary transition-colors">
+            <Link href="#featured" className="text-foreground hover:text-primary transition-colors hover-scale-sm">
               Featured
             </Link>
-            <Link href="#contact" className="text-foreground hover:text-primary transition-colors">
+            <Link href="#contact" className="text-foreground hover:text-primary transition-colors hover-scale-sm">
               Contact
             </Link>
-            <button className="bg-primary text-primary-foreground px-6 py-2 rounded-lg hover:bg-primary/90 transition-colors font-medium">
+            <button className="bg-primary text-primary-foreground px-6 py-2 rounded-lg hover:bg-primary/90 transition-colors font-medium hover-float hover-scale">
               Inquiry
             </button>
           </div>
@@ -46,20 +46,20 @@ export default function Navigation() {
 
         {/* Mobile Menu */}
         {isOpen && (
-          <div className="md:hidden pb-4 flex flex-col gap-4">
-            <Link href="/plots" className="text-foreground hover:text-primary transition-colors">
+          <div className="md:hidden pb-4 flex flex-col gap-4 animate-slide-in-top">
+            <Link href="/plots" className="text-foreground hover:text-primary transition-colors hover-scale-sm">
               Browse Plots
             </Link>
-            <Link href="/about" className="text-foreground hover:text-primary transition-colors">
+            <Link href="/about" className="text-foreground hover:text-primary transition-colors hover-scale-sm">
               About
             </Link>
-            <Link href="#featured" className="text-foreground hover:text-primary transition-colors">
+            <Link href="#featured" className="text-foreground hover:text-primary transition-colors hover-scale-sm">
               Featured
             </Link>
-            <Link href="#contact" className="text-foreground hover:text-primary transition-colors">
+            <Link href="#contact" className="text-foreground hover:text-primary transition-colors hover-scale-sm">
               Contact
             </Link>
-            <button className="bg-primary text-primary-foreground px-6 py-2 rounded-lg hover:bg-primary/90 transition-colors font-medium w-full">
+            <button className="bg-primary text-primary-foreground px-6 py-2 rounded-lg hover:bg-primary/90 transition-colors font-medium w-full hover-float">
               Inquiry
             </button>
           </div>

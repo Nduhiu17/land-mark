@@ -41,7 +41,7 @@ export default function PlotCard({ plot }: { plot: Plot }) {
   }
 
   return (
-    <Card className="overflow-hidden hover:shadow-xl transition-all duration-300 h-full flex flex-col group">
+    <Card className="overflow-hidden hover:shadow-xl transition-all duration-300 h-full flex flex-col group hover-float animate-scale-in">
       {/* Image Container with Slider */}
       <div className="relative h-56 overflow-hidden bg-muted">
         <Link href={`/plots/${plot.id}`} className="absolute inset-0 z-10">
@@ -55,7 +55,7 @@ export default function PlotCard({ plot }: { plot: Plot }) {
         <Badge
           className={`absolute top-3 right-3 z-20 ${
             plot.type === "commercial" ? "bg-primary text-primary-foreground" : "bg-accent text-accent-foreground"
-          }`}
+          } animate-fade-in-right`}
         >
           {plot.type === "commercial" ? "Commercial" : "Residential"}
         </Badge>
@@ -125,7 +125,7 @@ export default function PlotCard({ plot }: { plot: Plot }) {
             <p className="font-bold text-primary text-2xl">{formatPrice(plot.price)}</p>
           </div>
           <Link href={`/plots/${plot.id}`} className="w-full">
-            <button className="w-full bg-primary text-primary-foreground py-2 rounded-lg font-semibold hover:bg-primary/90 transition-colors text-sm">
+            <button className="w-full bg-primary text-primary-foreground py-2 rounded-lg font-semibold hover:bg-primary/90 transition-colors text-sm hover-scale">
               View Details
             </button>
           </Link>

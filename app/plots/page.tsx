@@ -47,7 +47,7 @@ export default function PlotsPage() {
       <main className="flex-1 py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Header */}
-          <div className="mb-12">
+          <div className="mb-12 animate-fade-in-down">
             <h1 className="text-4xl font-bold text-foreground mb-2">Browse Our Properties</h1>
             <p className="text-lg text-muted-foreground">
               Discover {filteredPlots.length} premium plots matching your criteria
@@ -56,21 +56,21 @@ export default function PlotsPage() {
 
           <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
             {/* Filters Sidebar */}
-            <div className="lg:col-span-1">
+            <div className="lg:col-span-1 animate-fade-in-left">
               <PlotFilters filters={filters} onFiltersChange={setFilters} locations={locations} />
             </div>
 
             {/* Plots Grid */}
-            <div className="lg:col-span-3">
+            <div className="lg:col-span-3 animate-fade-in-right">
               {/* Sort Options */}
-              <div className="mb-8 flex justify-between items-center">
+              <div className="mb-8 flex justify-between items-center animate-fade-in-up">
                 <p className="text-muted-foreground font-medium">Showing {filteredPlots.length} results</p>
                 <div className="flex items-center gap-2">
                   <ArrowUpDown size={18} className="text-muted-foreground" />
                   <select
                     value={sortBy}
                     onChange={(e) => setSortBy(e.target.value as typeof sortBy)}
-                    className="px-4 py-2 rounded-lg bg-secondary border border-border text-foreground font-medium"
+                    className="px-4 py-2 rounded-lg bg-secondary border border-border text-foreground font-medium hover-scale-sm transition-all"
                   >
                     <option value="price-low">Price: Low to High</option>
                     <option value="price-high">Price: High to Low</option>
@@ -82,12 +82,14 @@ export default function PlotsPage() {
               {/* Plots Grid */}
               {filteredPlots.length > 0 ? (
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  {filteredPlots.map((plot) => (
-                    <PlotCard key={plot.id} plot={plot} />
+                  {filteredPlots.map((plot, index) => (
+                    <div key={plot.id} className="animate-stagger-1" style={{ animationDelay: `${(index % 6) * 0.08}s` }}>
+                      <PlotCard plot={plot} />
+                    </div>
                   ))}
                 </div>
               ) : (
-                <div className="text-center py-16">
+                <div className="text-center py-16 animate-bounce-in">
                   <p className="text-xl text-muted-foreground font-medium">No plots found matching your criteria.</p>
                   <button
                     onClick={() =>
@@ -98,7 +100,7 @@ export default function PlotsPage() {
                         location: "",
                       })
                     }
-                    className="mt-4 text-primary font-semibold hover:underline"
+                    className="mt-4 text-primary font-semibold hover:underline hover-scale-sm"
                   >
                     Reset filters
                   </button>

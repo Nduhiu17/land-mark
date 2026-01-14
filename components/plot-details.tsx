@@ -30,19 +30,19 @@ export default function PlotDetails({ plot }: { plot: Plot }) {
   return (
     <div className="space-y-8">
       {/* Title and Price */}
-      <div>
+      <div className="animate-fade-in-down">
         <div className="flex items-start justify-between mb-4">
           <div>
-            <h1 className="text-4xl font-bold text-foreground mb-2">{plot.title}</h1>
-            <div className="flex items-center gap-2 text-muted-foreground">
+            <h1 className="text-4xl font-bold text-foreground mb-2 animate-fade-in-up">{plot.title}</h1>
+            <div className="flex items-center gap-2 text-muted-foreground animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
               <MapPin size={20} />
               <span className="text-lg">{plot.location}</span>
             </div>
           </div>
           <Badge
-            className={
+            className={`${
               plot.type === "commercial" ? "bg-primary text-primary-foreground" : "bg-accent text-accent-foreground"
-            }
+            } animate-bounce-in`}
           >
             {plot.type === "commercial" ? "Commercial" : "Residential"}
           </Badge>
@@ -50,35 +50,35 @@ export default function PlotDetails({ plot }: { plot: Plot }) {
       </div>
 
       {/* Key Metrics */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-        <Card className="p-4 text-center">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
+        <Card className="p-4 text-center hover-float hover-scale">
           <p className="text-muted-foreground text-sm mb-2">Total Price</p>
           <p className="text-2xl font-bold text-primary">{formatPrice(plot.price)}</p>
         </Card>
-        <Card className="p-4 text-center">
+        <Card className="p-4 text-center hover-float hover-scale">
           <p className="text-muted-foreground text-sm mb-2">Area</p>
           <p className="text-2xl font-bold text-foreground">{plot.area.toLocaleString()}</p>
           <p className="text-xs text-muted-foreground">sqft</p>
         </Card>
-        <Card className="p-4 text-center">
+        <Card className="p-4 text-center hover-float hover-scale">
           <p className="text-muted-foreground text-sm mb-2">Price/Sqft</p>
           <p className="text-2xl font-bold text-accent">Ksh{pricePerSqft}</p>
         </Card>
-        <Card className="p-4 text-center">
+        <Card className="p-4 text-center hover-float hover-scale">
           <p className="text-muted-foreground text-sm mb-2">Possession</p>
           <p className="text-2xl font-bold text-foreground">{plot.possession}</p>
         </Card>
       </div>
 
       {/* Description */}
-      <div>
+      <div className="animate-fade-in-up" style={{ animationDelay: '0.3s' }}>
         <h2 className="text-2xl font-bold text-foreground mb-4">About This Property</h2>
         <p className="text-lg text-muted-foreground leading-relaxed">{plot.description}</p>
       </div>
 
       {/* Approval Status */}
       {plot.approved && (
-        <Card className="p-6 bg-accent/10 border-accent/30">
+        <Card className="p-6 bg-accent/10 border-accent/30 animate-scale-in" style={{ animationDelay: '0.4s' }}>
           <div className="flex items-center gap-3">
             <CheckCircle size={24} className="text-accent" />
             <div>
@@ -90,14 +90,14 @@ export default function PlotDetails({ plot }: { plot: Plot }) {
       )}
 
       {/* Features */}
-      <div>
+      <div className="animate-fade-in-up" style={{ animationDelay: '0.5s' }}>
         <h2 className="text-2xl font-bold text-foreground mb-4 flex items-center gap-2">
           <Zap size={24} className="text-primary" />
           Key Features
         </h2>
         <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
           {plot.features.map((feature, idx) => (
-            <div key={idx} className="flex items-center gap-3 bg-secondary p-4 rounded-lg">
+            <div key={idx} className="flex items-center gap-3 bg-secondary p-4 rounded-lg hover-float hover-scale animate-stagger-1" style={{ animationDelay: `${idx * 0.05}s` }}>
               <CheckCircle size={20} className="text-primary flex-shrink-0" />
               <span className="font-medium text-foreground">{feature}</span>
             </div>
@@ -106,11 +106,11 @@ export default function PlotDetails({ plot }: { plot: Plot }) {
       </div>
 
       {/* Amenities */}
-      <div>
+      <div className="animate-fade-in-up" style={{ animationDelay: '0.6s' }}>
         <h2 className="text-2xl font-bold text-foreground mb-4">Amenities & Facilities</h2>
         <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
           {plot.amenities.map((amenity, idx) => (
-            <div key={idx} className="flex items-center gap-3 bg-secondary p-4 rounded-lg">
+            <div key={idx} className="flex items-center gap-3 bg-secondary p-4 rounded-lg hover-float hover-scale animate-stagger-1" style={{ animationDelay: `${idx * 0.05}s` }}>
               <div className="w-2 h-2 bg-primary rounded-full flex-shrink-0"></div>
               <span className="font-medium text-foreground">{amenity}</span>
             </div>
@@ -119,24 +119,24 @@ export default function PlotDetails({ plot }: { plot: Plot }) {
       </div>
 
       {/* Investment Highlights */}
-      <Card className="p-6 bg-primary/5 border-primary/20">
+      <Card className="p-6 bg-primary/5 border-primary/20 animate-fade-in-up" style={{ animationDelay: '0.7s' }}>
         <h3 className="text-xl font-bold text-foreground mb-4">Investment Highlights</h3>
         <ul className="space-y-3">
-          <li className="flex items-start gap-3">
+          <li className="flex items-start gap-3 animate-stagger-1">
             <span className="text-primary font-bold mt-1">✓</span>
             <span className="text-muted-foreground">
               Strategically located in a high-growth area with excellent appreciation potential
             </span>
           </li>
-          <li className="flex items-start gap-3">
+          <li className="flex items-start gap-3 animate-stagger-2">
             <span className="text-primary font-bold mt-1">✓</span>
             <span className="text-muted-foreground">Easy bank loan approval due to government approved layout</span>
           </li>
-          <li className="flex items-start gap-3">
+          <li className="flex items-start gap-3 animate-stagger-3">
             <span className="text-primary font-bold mt-1">✓</span>
             <span className="text-muted-foreground">Strong demand in the area with increasing rental yields</span>
           </li>
-          <li className="flex items-start gap-3">
+          <li className="flex items-start gap-3 animate-stagger-4">
             <span className="text-primary font-bold mt-1">✓</span>
             <span className="text-muted-foreground">All modern amenities and infrastructure in place</span>
           </li>

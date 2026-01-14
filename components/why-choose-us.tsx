@@ -28,7 +28,7 @@ export default function WhyChooseUs() {
   return (
     <section className="py-16 sm:py-24 bg-secondary">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
+        <div className="text-center mb-16 animate-fade-in-down">
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-4">
             Why Choose Landmark Estates
           </h2>
@@ -41,13 +41,15 @@ export default function WhyChooseUs() {
           {benefits.map((benefit, index) => {
             const Icon = benefit.icon
             return (
-              <Card key={index} className="p-8 text-center hover:shadow-lg transition-shadow">
-                <div className="inline-flex items-center justify-center w-16 h-16 bg-primary/10 rounded-full mb-6">
-                  <Icon size={32} className="text-primary" />
-                </div>
-                <h3 className="text-xl font-bold text-foreground mb-3">{benefit.title}</h3>
-                <p className="text-muted-foreground leading-relaxed">{benefit.description}</p>
-              </Card>
+              <div key={index} className="animate-stagger-1" style={{ animationDelay: `${index * 0.1}s` }}>
+                <Card className="p-8 text-center hover:shadow-lg transition-shadow hover-float">
+                  <div className="inline-flex items-center justify-center w-16 h-16 bg-primary/10 rounded-full mb-6 hover-scale">
+                    <Icon size={32} className="text-primary" />
+                  </div>
+                  <h3 className="text-xl font-bold text-foreground mb-3">{benefit.title}</h3>
+                  <p className="text-muted-foreground leading-relaxed">{benefit.description}</p>
+                </Card>
+              </div>
             )
           })}
         </div>
